@@ -34,7 +34,12 @@ final class DateTimeAdapter implements AdapterInterface
 
         $match = new FunctionExpressionMatcher();
 
-        foreach ($match('datetime(_immutable)?', $value) as $expression) {
+        $expressions = $match('datetime(_immutable)?', $value);
+        if ([] === $expressions) {
+            return $value;
+        }
+
+        foreach ($expressions as $expression) {
             // surround named parameters arguments by double quotes
             // so that the named parameter part is not interpreted by the expression language
             // ex. 'format: "Y-m-d"' will be transformed to '"format: \"Y-m-d\""'

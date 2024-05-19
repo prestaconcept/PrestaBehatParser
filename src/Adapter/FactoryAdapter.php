@@ -29,7 +29,12 @@ final class FactoryAdapter implements AdapterInterface
 
         $match = new FunctionExpressionMatcher();
 
-        foreach ($match('factory', $value) as $expression) {
+        $expressions = $match('factory', $value);
+        if ([] === $expressions) {
+            return $value;
+        }
+
+        foreach ($expressions as $expression) {
             $evaluated = $this->expressionLanguage->evaluate($expression);
             if ("<$expression>" === $value) {
                 return $evaluated;
