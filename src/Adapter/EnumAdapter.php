@@ -21,7 +21,12 @@ final class EnumAdapter implements AdapterInterface
 
         $match = new FunctionExpressionMatcher();
 
-        foreach ($match('enum', $value) as $expression) {
+        $expressions = $match('enum', $value);
+        if ([] === $expressions) {
+            return $value;
+        }
+
+        foreach ($expressions as $expression) {
             try {
                 $evaluated = $this->expressionLanguage->evaluate($expression);
             } catch (\Throwable $exception) {

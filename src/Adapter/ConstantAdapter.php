@@ -21,7 +21,12 @@ final class ConstantAdapter implements AdapterInterface
 
         $match = new FunctionExpressionMatcher();
 
-        foreach ($match('constant', $value) as $expression) {
+        $expressions = $match('constant', $value);
+        if ([] === $expressions) {
+            return $value;
+        }
+
+        foreach ($expressions as $expression) {
             $evaluated = $this->expressionLanguage->evaluate($expression);
 
             // the evaluation did not end up with a transformation
