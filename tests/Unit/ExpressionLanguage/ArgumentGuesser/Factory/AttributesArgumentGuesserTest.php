@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit\ExpressionLanguage\ArgumentGuesser\Factory;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\ExpressionLanguage\ArgumentGuesser\Factory\ArgumentGuesserInterface;
 use Presta\BehatEvaluator\ExpressionLanguage\ArgumentGuesser\Factory\AttributesArgumentGuesser;
@@ -14,13 +15,12 @@ use Presta\BehatEvaluator\ExpressionLanguage\ArgumentGuesser\Factory\AttributesA
 final class AttributesArgumentGuesserTest extends TestCase
 {
     /**
-     * @dataProvider arguments
-     *
      * @param FactoryAttributes|string|null $expected
      * @param FactoryAttributes|string|null $method
      * @param FactoryAttributes|string|null $min
      * @param FactoryAttributes|string|null $attributes
      */
+    #[DataProvider('arguments')]
     public function testInvokingTheGuesser(
         array|string|null $expected,
         array|string|null $method,
@@ -42,7 +42,7 @@ final class AttributesArgumentGuesserTest extends TestCase
      *     string|null,
      * }>
      */
-    public function arguments(): iterable
+    public static function arguments(): iterable
     {
         yield 'all arguments set not null should return null' => [null, null, null, null, null];
         yield 'an array as 1st argument should return the 1st argument' => [[], [], null, null, null];

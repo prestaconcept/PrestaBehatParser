@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit\ExpressionLanguage\ExpressionMatcher;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\ExpressionLanguage\ExpressionMatcher\FunctionExpressionMatcher;
 
@@ -11,9 +12,8 @@ final class FunctionExpressionMatcherTest extends TestCase
 {
     /**
      * @param array<string> $expected
-     *
-     * @dataProvider strings
      */
+    #[DataProvider('strings')]
     public function testMatchingAllExpressions(array $expected, string $name, string $text): void
     {
         $match = new FunctionExpressionMatcher();
@@ -24,7 +24,7 @@ final class FunctionExpressionMatcherTest extends TestCase
     /**
      * @return iterable<string, array{array<string>, string}>
      */
-    public function strings(): iterable
+    public static function strings(): iterable
     {
         $simpleFunction = 'foobar()';
         $functionWithArguments = 'foobar("foo", "bar")';

@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Resources\FactoryClassFactory;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends ModelFactory<FooBar>
+ * @extends PersistentProxyObjectFactory<FooBar>
  */
-final class FooBarFactory extends ModelFactory
+final class FooBarFactory extends PersistentProxyObjectFactory
 {
-    protected static function getClass(): string
+    public static function class(): string
     {
         return FooBar::class;
     }
 
-    /**
-     * @return array<mixed>
-     */
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [];
     }

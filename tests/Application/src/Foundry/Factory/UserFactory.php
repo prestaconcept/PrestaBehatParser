@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Presta\BehatEvaluator\Tests\Application\Foundry\Factory;
 
 use Presta\BehatEvaluator\Tests\Application\Entity\User;
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends ModelFactory<User>
+ * @extends PersistentProxyObjectFactory<User>
  */
-final class UserFactory extends ModelFactory
+final class UserFactory extends PersistentProxyObjectFactory
 {
-    protected static function getClass(): string
+    public static function class(): string
     {
         return User::class;
     }
 
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
             'firstname' => self::faker()->firstName(),

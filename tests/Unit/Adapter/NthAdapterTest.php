@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit\Adapter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\Adapter\NthAdapter;
 use Presta\BehatEvaluator\Tests\Resources\UnsupportedValuesProvider;
@@ -12,9 +13,7 @@ final class NthAdapterTest extends TestCase
 {
     use UnsupportedValuesProvider;
 
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         $evaluate = new NthAdapter();
@@ -25,7 +24,7 @@ final class NthAdapterTest extends TestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         yield 'a number followed by "st" should return the numerical part as int' => [1, '1st'];
         yield 'a number followed by "nd" should return the numerical part as int' => [2, '2nd'];

@@ -7,7 +7,7 @@ namespace Presta\BehatEvaluator\Tests\Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-final class User
+class User
 {
     #[ORM\Column]
     #[ORM\Id]

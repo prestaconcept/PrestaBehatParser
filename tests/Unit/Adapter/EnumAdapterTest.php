@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit\Adapter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\Adapter\EnumAdapter;
 use Presta\BehatEvaluator\Tests\Resources\ExpressionLanguageFactory;
@@ -17,9 +18,7 @@ final class EnumAdapterTest extends TestCase
 {
     use UnsupportedValuesProvider;
 
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         if ($expected instanceof \Throwable) {
@@ -43,7 +42,7 @@ final class EnumAdapterTest extends TestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         yield 'a string containing only a unit enum should return the enum' => [
             FooBarEnum::Foo,

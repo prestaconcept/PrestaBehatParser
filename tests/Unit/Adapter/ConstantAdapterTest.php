@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit\Adapter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\Adapter\ConstantAdapter;
 use Presta\BehatEvaluator\Tests\Resources\ConstantHolder;
@@ -15,9 +16,7 @@ final class ConstantAdapterTest extends TestCase
 {
     use UnsupportedValuesProvider;
 
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         if ($expected instanceof \Throwable) {
@@ -41,7 +40,7 @@ final class ConstantAdapterTest extends TestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         yield 'a string containing only a PHP constant should return the constant\'s value' => [
             ARRAY_FILTER_USE_BOTH,

@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\Adapter\AdapterInterface;
 use Presta\BehatEvaluator\Evaluator;
 
 final class EvaluatorTest extends TestCase
 {
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testInvokingTheEvaluator(mixed $expected, mixed $value): void
     {
         $adapters = [
@@ -46,7 +45,7 @@ final class EvaluatorTest extends TestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         yield 'the string "123" should trigger both adapters and return true' => [true, '123'];
         yield 'the value 123 should only trigger the second adapter and return true' => [true, 123];

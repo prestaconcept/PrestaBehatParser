@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Presta\BehatEvaluator\Tests\Integration\Adapter;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Presta\BehatEvaluator\Adapter\FactoryAdapter;
 use Presta\BehatEvaluator\Exception\UnexpectedTypeException;
 use Presta\BehatEvaluator\Tests\Application\Entity\User;
@@ -12,7 +13,7 @@ use Presta\BehatEvaluator\Tests\Application\Foundry\Factory\UserFactory;
 use Presta\BehatEvaluator\Tests\Integration\KernelTestCase;
 use Presta\BehatEvaluator\Tests\Resources\ExpressionLanguageFactory;
 use Presta\BehatEvaluator\Tests\Resources\UnsupportedValuesProvider;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 use Zenstruck\Foundry\Test\Factories;
 
 final class FactoryAdapterTest extends KernelTestCase
@@ -20,9 +21,7 @@ final class FactoryAdapterTest extends KernelTestCase
     use Factories;
     use UnsupportedValuesProvider;
 
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         if ($expected instanceof \Throwable) {
@@ -61,11 +60,11 @@ final class FactoryAdapterTest extends KernelTestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         yield 'a string containing only a factory expression with a factory name and an array of attributes'
             . ' should find and return the relevant object proxy' => [
-            static fn () => UserFactory::find(['firstname' => 'John'])->disableAutoRefresh(),
+            static fn () => UserFactory::find(['firstname' => 'John'])->_disableAutoRefresh(),
             '<factory("user", {"firstname": "John"})>',
         ];
         yield 'a string containing only a factory expression'
@@ -79,7 +78,7 @@ final class FactoryAdapterTest extends KernelTestCase
             . ' should find and return the relevant object proxy(s)' => [
             static fn () => new ArrayCollection(
                 array_map(
-                    static fn (Proxy $proxy): object => $proxy->object(),
+                    static fn (Proxy $proxy): object => $proxy->_real(),
                     UserFactory::findBy(['lastname' => 'Doe']),
                 ),
             ),
@@ -94,7 +93,7 @@ final class FactoryAdapterTest extends KernelTestCase
             . ' and an integer as third parameter should return the relevant object proxy(s)' => [
             static fn () => new ArrayCollection(
                 array_map(
-                    static fn (Proxy $proxy): object => $proxy->object(),
+                    static fn (Proxy $proxy): object => $proxy->_real(),
                     UserFactory::all(),
                 ),
             ),
@@ -105,7 +104,7 @@ final class FactoryAdapterTest extends KernelTestCase
             . ' should return the relevant object proxy(s)' => [
             static fn () => new ArrayCollection(
                 array_map(
-                    static fn (Proxy $proxy): object => $proxy->object(),
+                    static fn (Proxy $proxy): object => $proxy->_real(),
                     UserFactory::findBy(['firstname' => 'John']),
                 ),
             ),

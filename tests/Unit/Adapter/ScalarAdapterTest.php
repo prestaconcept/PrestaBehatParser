@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit\Adapter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\Adapter\ScalarAdapter;
 use Presta\BehatEvaluator\Tests\Resources\UnsupportedValuesProvider;
@@ -12,9 +13,7 @@ final class ScalarAdapterTest extends TestCase
 {
     use UnsupportedValuesProvider;
 
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         $evaluate = new ScalarAdapter();
@@ -25,7 +24,7 @@ final class ScalarAdapterTest extends TestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         yield 'the string "null" should return null' => [null, 'null'];
         yield 'the string "true" should return true' => [true, 'true'];

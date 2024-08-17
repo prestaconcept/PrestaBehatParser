@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Integration;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Presta\BehatEvaluator\Evaluator;
 use Presta\BehatEvaluator\EvaluatorBuilder;
 use Presta\BehatEvaluator\Tests\Application\Foundry\Factory\UserFactory;
@@ -14,9 +15,7 @@ final class EvaluatorTest extends KernelTestCase
 {
     use Factories;
 
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testRegisteringTheAdapterBeforeCallingTheStaticHelpers(mixed $expected, mixed $value): void
     {
         UserFactory::createOne(['firstname' => 'John', 'lastname' => 'Doe']);
@@ -30,7 +29,7 @@ final class EvaluatorTest extends KernelTestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         yield 'a constant expression should not be necessary' => [
             ARRAY_FILTER_USE_KEY,

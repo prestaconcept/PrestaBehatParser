@@ -12,7 +12,7 @@ use Presta\BehatEvaluator\ExpressionLanguage\ArgumentGuesser\Factory\MethodArgum
 use Presta\BehatEvaluator\ExpressionLanguage\ArgumentGuesser\Factory\MinArgumentGuesser;
 use Presta\BehatEvaluator\Foundry\FactoryClassFactory;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class FactoryEvaluator
 {
@@ -77,18 +77,18 @@ final class FactoryEvaluator
                 throw new UnexpectedTypeException($value, Proxy::class);
             }
 
-            $value->disableAutoRefresh();
+            $value->_disableAutoRefresh();
 
-            return PropertyAccess::createPropertyAccessor()->getValue($value->object(), $accessor);
+            return PropertyAccess::createPropertyAccessor()->getValue($value->_real(), $accessor);
         }
 
         switch (true) {
             case \is_array($value):
-                $value = new ArrayCollection(array_map(static fn (Proxy $proxy): object => $proxy->object(), $value));
+                $value = new ArrayCollection(array_map(static fn (Proxy $proxy): object => $proxy->_real(), $value));
                 break;
 
             case $value instanceof Proxy:
-                $value->disableAutoRefresh();
+                $value->_disableAutoRefresh();
                 break;
         }
 

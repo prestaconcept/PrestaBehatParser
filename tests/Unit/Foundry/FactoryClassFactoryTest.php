@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Presta\BehatEvaluator\Tests\Unit\Foundry;
 
 use Doctrine\Inflector\InflectorFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\Foundry\FactoryClassFactory;
 
 final class FactoryClassFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider names
-     */
+    #[DataProvider('names')]
     public function testCreatingAFactoryClass(\Throwable|string $expected, string $name, string $namespace): void
     {
         if ($expected instanceof \Throwable) {
@@ -37,7 +36,7 @@ final class FactoryClassFactoryTest extends TestCase
     /**
      * @return iterable<string, array{\Throwable|string, string, string}>
      */
-    public function names(): iterable
+    public static function names(): iterable
     {
         $namespace = 'Presta\\BehatEvaluator\\Tests\\Resources\\FactoryClassFactory';
 

@@ -15,24 +15,24 @@
         "ext-intl": "*",
         "doctrine/collections": "^1.0|^2.0",
         "doctrine/inflector": "^2.0",
-        "symfony/expression-language": "^5.0|^6.0|^7.0",
-        "zenstruck/foundry": "^1.0"
+        "symfony/expression-language": "^6.0|^7.0",
+        "zenstruck/foundry": "^2.0"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
-        "behat/behat": "^3.13",
-        "doctrine/doctrine-bundle": "^2.9",
-        "doctrine/orm": "^2.15",
-        "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^9.6",
-        "squizlabs/php_codesniffer": "^3.7",
-        "symfony/console": "^5.0|^6.0|^7.0",
-        "symfony/dotenv": "^5.0|^6.0|^7.0",
-        "symfony/framework-bundle": "^5.0|^6.0|^7.0",
-        "symfony/phpunit-bridge": "^5.0|^6.0|^7.0",
-        "symfony/runtime": "^5.0|^6.0|^7.0",
-        "symfony/var-dumper": "^5.0|^6.0|^7.0",
-        "symfony/yaml": "^5.0|^6.0|^7.0"
+        "behat/behat": "^3.14",
+        "doctrine/doctrine-bundle": "^2.12",
+        "doctrine/orm": "^3.2.1",
+        "phpstan/phpstan": "^1.11",
+        "phpunit/phpunit": "^10.5|^11.3",
+        "squizlabs/php_codesniffer": "^3.10",
+        "symfony/console": "^6.0|^7.0",
+        "symfony/dotenv": "^6.0|^7.0",
+        "symfony/framework-bundle": "^6.0|^7.0",
+        "symfony/phpunit-bridge": "^6.0|^7.0",
+        "symfony/runtime": "^6.0|^7.0",
+        "symfony/var-dumper": "^6.0|^7.0",
+        "symfony/yaml": "^6.0|^7.0"
     },
     "autoload": {
         "psr-4": {

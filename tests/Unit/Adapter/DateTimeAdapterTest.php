@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presta\BehatEvaluator\Tests\Unit\Adapter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Presta\BehatEvaluator\Adapter\DateTimeAdapter;
 use Presta\BehatEvaluator\Tests\Resources\ExpressionLanguageFactory;
@@ -13,9 +14,7 @@ final class DateTimeAdapterTest extends TestCase
 {
     use UnsupportedValuesProvider;
 
-    /**
-     * @dataProvider values
-     */
+    #[DataProvider('values')]
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         $parse = new DateTimeAdapter(ExpressionLanguageFactory::create());
@@ -47,7 +46,7 @@ final class DateTimeAdapterTest extends TestCase
     /**
      * @return iterable<string, array{mixed, mixed}>
      */
-    public function values(): iterable
+    public static function values(): iterable
     {
         foreach (['datetime' => '\DateTime', 'datetime_immutable' => '\DateTimeImmutable'] as $name => $className) {
             yield "a string containing only a $name expression with no parameters"
