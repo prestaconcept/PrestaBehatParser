@@ -32,9 +32,9 @@ final class Evaluator implements AdapterInterface
     }
 
     /**
-     * @param list<mixed> $values
+     * @param array<mixed> $values
      *
-     * @return list<mixed>
+     * @return array<mixed>
      */
     public static function evaluateMany(array $values, EvaluatorBuilder $builder = new EvaluatorBuilder()): array
     {
