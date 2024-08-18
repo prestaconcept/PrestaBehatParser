@@ -41,17 +41,15 @@ final class FormatArgumentGuesser implements ArgumentGuesserInterface
     }
 
     /**
-     * @param string $argument
-     *
      * @return IntlFormats|string
      */
     private function format(string $argument): array|string
     {
-        $argument = trim(str_replace(['format:', 'intl:'], '', $argument), ' "\'');
+        $argument = \trim(\str_replace(['format:', 'intl:'], '', $argument), ' "\'');
 
         try {
             /** @var IntlFormats $formats */
-            $formats = json_decode($argument, true, JSON_THROW_ON_ERROR);
+            $formats = \json_decode($argument, true, JSON_THROW_ON_ERROR);
             if (\is_array($formats)) {
                 return $formats;
             }

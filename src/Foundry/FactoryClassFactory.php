@@ -22,7 +22,7 @@ final class FactoryClassFactory
 
     public function fromName(string $name): string
     {
-        $name = implode('\\', array_map($this->inflector->classify(...), explode('/', $name)));
+        $name = \implode('\\', \array_map($this->inflector->classify(...), \explode('/', $name)));
 
         $factoryClass = "$this->namespace{$name}Factory";
         if (!\is_a($factoryClass, PersistentProxyObjectFactory::class, true)) {

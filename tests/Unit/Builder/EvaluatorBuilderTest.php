@@ -18,8 +18,7 @@ final class EvaluatorBuilderTest extends TestCase
         $factoryNamespace = 'Presta\\BehatEvaluator\\Tests\\Application\\Foundry\\Factory\\';
         $inflector = InflectorFactory::create()->build();
 
-        $adapter = new class ($culture, $factoryNamespace, $inflector) implements AdapterInterface
-        {
+        $adapter = new class($culture, $factoryNamespace, $inflector) implements AdapterInterface {
             public function __construct(
                 private readonly string $culture,
                 private readonly string $factoryNamespace,
@@ -44,7 +43,7 @@ final class EvaluatorBuilderTest extends TestCase
         $builder->withCulture($culture);
         $builder->withFactoryNamespace($factoryNamespace);
         $builder->withInflector($inflector);
-        $builder->registerAdapterFactory($adapter::class, static fn(): AdapterInterface => $adapter);
+        $builder->registerAdapterFactory($adapter::class, static fn (): AdapterInterface => $adapter);
 
         $evaluate = $builder->build();
 

@@ -44,7 +44,7 @@ final class FactoryAdapter implements AdapterInterface
                 throw new \RuntimeException();
             }
 
-            $value = str_replace("<$expression>", (string) $evaluated, $value);
+            $value = \str_replace("<$expression>", (string)$evaluated, $value);
         }
 
         return $value;

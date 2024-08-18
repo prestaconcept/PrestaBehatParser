@@ -54,7 +54,7 @@ final class AttributesArgumentGuesserTest extends TestCase
             null,
         ];
         yield 'a non null method, a numeric value as 2nd argument and an array as 3rd argument'
-            . ' should return the 3rd argument' => [
+        . ' should return the 3rd argument' => [
             [],
             'randomSet',
             '2',

@@ -20,7 +20,7 @@ final class ConstantAdapterTest extends TestCase
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         if ($expected instanceof \Throwable) {
-            $this->expectException(get_class($expected));
+            $this->expectException(\get_class($expected));
 
             if ('' !== $expected->getMessage()) {
                 $this->expectExceptionMessage($expected->getMessage());
@@ -47,7 +47,7 @@ final class ConstantAdapterTest extends TestCase
             '<constant("ARRAY_FILTER_USE_BOTH")>',
         ];
         yield 'a string containing only a non existing PHP constant'
-            . ' should return the original expression unchanged' => [
+        . ' should return the original expression unchanged' => [
             '<constant("UNDEFINED")>',
             '<constant("UNDEFINED")>',
         ];
@@ -56,27 +56,27 @@ final class ConstantAdapterTest extends TestCase
             '<constant("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\ConstantHolder::STRING")>',
         ];
         yield 'a string containing only a class constant from a non existing class'
-            . ' should return the original expression unchanged' => [
+        . ' should return the original expression unchanged' => [
             '<constant("Invalid\\\\Path::UNDEFINED")>',
             '<constant("Invalid\\\\Path::UNDEFINED")>',
         ];
         yield 'a string containing only a non existing class constant'
-            . ' should return the original expression unchanged' => [
+        . ' should return the original expression unchanged' => [
             '<constant("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\ConstantHolder::UNDEFINED")>',
             '<constant("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\ConstantHolder::UNDEFINED")>',
         ];
         yield 'a string containing only a valid constant but without the constant function'
-            . ' should return the original expression unchanged' => [
+        . ' should return the original expression unchanged' => [
             'Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\ConstantHolder::STRING',
             'Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\ConstantHolder::STRING',
         ];
         yield 'a string containing a constant expression'
-            . ' should return the string after evaluating the constant expression' => [
+        . ' should return the string after evaluating the constant expression' => [
             'the value ' . ARRAY_FILTER_USE_KEY . ' comes from a constant',
             'the value <constant("ARRAY_FILTER_USE_KEY")> comes from a constant',
         ];
         yield 'a string containing many constant expressions'
-            . ' should return the string after evaluating the constant expressions' => [
+        . ' should return the string after evaluating the constant expressions' => [
             'the values ' . ARRAY_FILTER_USE_KEY . ' and ' . ARRAY_FILTER_USE_BOTH . ' come from constants',
             'the values <constant("ARRAY_FILTER_USE_KEY")> and <constant("ARRAY_FILTER_USE_BOTH")> come from constants',
         ];

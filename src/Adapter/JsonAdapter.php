@@ -12,7 +12,7 @@ final class JsonAdapter implements AdapterInterface
             return $value;
         }
 
-        $data = json_decode($value, true);
+        $data = \json_decode($value, true);
         if (\is_array($data)) {
             return $data;
         }

@@ -53,7 +53,7 @@ final class AccessorArgumentGuesserTest extends TestCase
             null,
         ];
         yield 'a non null method, an array of attributes and a string as 3rd argument'
-            . ' should return the 3rd argument' => [
+        . ' should return the 3rd argument' => [
             'lastname',
             'find',
             [],
@@ -61,7 +61,7 @@ final class AccessorArgumentGuesserTest extends TestCase
             null,
         ];
         yield 'a non null method, an numeric value as 2nd argument and a string as 3rd argument'
-            . ' should return the 3rd argument' => [
+        . ' should return the 3rd argument' => [
             'lastname',
             'find',
             '1',
@@ -69,7 +69,7 @@ final class AccessorArgumentGuesserTest extends TestCase
             null,
         ];
         yield 'a non null method, an numeric value as 2nd argument, an array of attributes and a string as 4th argument'
-            . ' should return the 4th argument' => [
+        . ' should return the 4th argument' => [
             'lastname',
             'find',
             '1',

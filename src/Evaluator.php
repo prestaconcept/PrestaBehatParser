@@ -38,7 +38,7 @@ final class Evaluator implements AdapterInterface
      */
     public static function evaluateMany(array $values, EvaluatorBuilder $builder = new EvaluatorBuilder()): array
     {
-        return array_map(
+        return \array_map(
             static fn (mixed $value): mixed => self::evaluate($value, $builder),
             $values,
         );

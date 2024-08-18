@@ -12,11 +12,11 @@ final class NthAdapter implements AdapterInterface
             return $value;
         }
 
-        preg_match('/^(?<count>\d+)(st|nd|rd|th)$/', $value, $matches);
+        \preg_match('/^(?<count>\d+)(st|nd|rd|th)$/', $value, $matches);
         if ('' === ($matches['count'] ?? '')) {
             return $value;
         }
 
-        return (int) $matches['count'];
+        return (int)$matches['count'];
     }
 }

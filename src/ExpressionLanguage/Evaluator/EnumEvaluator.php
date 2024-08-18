@@ -12,13 +12,13 @@ final class EnumEvaluator
     public function __invoke(array $arguments, string $enumClass, string $property = null): mixed
     {
         try {
-            $enum = constant($enumClass);
+            $enum = \constant($enumClass);
         } catch (\Throwable) {
             throw new \RuntimeException("\"$enumClass\" is not a valid enum.");
         }
 
         if (!$enum instanceof \UnitEnum) {
-            $debugType = get_debug_type($enum);
+            $debugType = \get_debug_type($enum);
 
             throw new \RuntimeException("\"$debugType\" is not a valid enum.");
         }

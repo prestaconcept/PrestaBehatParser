@@ -15,7 +15,7 @@ final class EvaluatorTest extends TestCase
     public function testInvokingTheEvaluator(mixed $expected, mixed $value): void
     {
         $adapters = [
-            new class implements AdapterInterface {
+            new class() implements AdapterInterface {
                 public function __invoke(mixed $value): mixed
                 {
                     if ('123' === $value) {
@@ -25,7 +25,7 @@ final class EvaluatorTest extends TestCase
                     return $value;
                 }
             },
-            new class implements AdapterInterface {
+            new class() implements AdapterInterface {
                 public function __invoke(mixed $value): mixed
                 {
                     if (123 === $value) {

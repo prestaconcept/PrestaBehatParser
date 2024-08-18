@@ -15,7 +15,7 @@ final class FactoryClassFactoryTest extends TestCase
     public function testCreatingAFactoryClass(\Throwable|string $expected, string $name, string $namespace): void
     {
         if ($expected instanceof \Throwable) {
-            $this->expectException(get_class($expected));
+            $this->expectException(\get_class($expected));
 
             if ('' !== $expected->getMessage()) {
                 $this->expectExceptionMessage($expected->getMessage());

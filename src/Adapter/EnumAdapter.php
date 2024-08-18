@@ -59,7 +59,7 @@ final class EnumAdapter implements AdapterInterface
 
             \assert(\is_int($evaluated) || \is_string($evaluated));
 
-            $value = str_replace("<$expression>", (string)$evaluated, $value);
+            $value = \str_replace("<$expression>", (string)$evaluated, $value);
         }
 
         return match (\is_numeric($value)) {

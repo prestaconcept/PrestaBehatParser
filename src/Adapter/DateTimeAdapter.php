@@ -43,10 +43,10 @@ final class DateTimeAdapter implements AdapterInterface
             // surround named parameters arguments by double quotes
             // so that the named parameter part is not interpreted by the expression language
             // ex. 'format: "Y-m-d"' will be transformed to '"format: \"Y-m-d\""'
-            $quotedExpression = preg_replace_callback(
+            $quotedExpression = \preg_replace_callback(
                 '/(format|intl): ?[^,)]+/',
                 static function (array $matches): string {
-                    $value = addslashes($matches[0] ?? '');
+                    $value = \addslashes($matches[0] ?? '');
 
                     return "\"$value\"";
                 },
@@ -62,7 +62,7 @@ final class DateTimeAdapter implements AdapterInterface
 
             \assert(\is_string($evaluated));
 
-            $value = str_replace("<$expression>", $evaluated, $value);
+            $value = \str_replace("<$expression>", $evaluated, $value);
         }
 
         return $value;

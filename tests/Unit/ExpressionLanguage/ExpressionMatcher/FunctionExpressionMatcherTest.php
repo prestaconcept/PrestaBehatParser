@@ -51,13 +51,13 @@ final class FunctionExpressionMatcherTest extends TestCase
             "The expression <$simpleFunction> is inside a string",
         ];
         yield 'a function expression containing arguments inside a larger string'
-            . ' should return the function and it\'s arguments' => [
+        . ' should return the function and it\'s arguments' => [
             [$functionWithArguments],
             'foobar',
             "The expression <$functionWithArguments> is inside a string",
         ];
         yield 'a function expression containing delimiters inside a larger string'
-            . ' should return the function including the delimiters' => [
+        . ' should return the function including the delimiters' => [
             [$functionWithDelimiters],
             'foobar',
             "The expression <$functionWithDelimiters> is inside a string",
@@ -66,10 +66,10 @@ final class FunctionExpressionMatcherTest extends TestCase
             [$simpleFunction, $functionWithArguments, $functionWithDelimiters],
             'foobar',
             "The expressions <$simpleFunction>, <$functionWithArguments> and <$functionWithDelimiters>"
-                .  'are inside a string',
+                . ' are inside a string',
         ];
         yield 'a simple function expression and a name being a pattern'
-            . ' should return the simple function whose name matches the pattern' => [
+        . ' should return the simple function whose name matches the pattern' => [
             ['foo()'],
             'foo(_bar)?',
             '<foo()>',

@@ -12,6 +12,6 @@ final class UnescapeAdapter implements AdapterInterface
             return $value;
         }
 
-        return stripslashes($value);
+        return \stripslashes($value);
     }
 }

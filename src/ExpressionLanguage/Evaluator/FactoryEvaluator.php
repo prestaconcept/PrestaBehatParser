@@ -66,10 +66,10 @@ final class FactoryEvaluator
         }
 
         $value = match (true) {
-            \is_numeric($min) && \is_array($attributes) => call_user_func($callable, $min, $attributes),
-            \is_numeric($min) && !\is_array($attributes) => call_user_func($callable, $min),
-            !\is_numeric($min) && \is_array($attributes) => call_user_func($callable, $attributes),
-            default => call_user_func($callable),
+            \is_numeric($min) && \is_array($attributes) => \call_user_func($callable, $min, $attributes),
+            \is_numeric($min) && !\is_array($attributes) => \call_user_func($callable, $min),
+            !\is_numeric($min) && \is_array($attributes) => \call_user_func($callable, $attributes),
+            default => \call_user_func($callable),
         };
 
         if (null !== $accessor) {
@@ -84,7 +84,7 @@ final class FactoryEvaluator
 
         switch (true) {
             case \is_array($value):
-                $value = new ArrayCollection(array_map(static fn (Proxy $proxy): object => $proxy->_real(), $value));
+                $value = new ArrayCollection(\array_map(static fn (Proxy $proxy): object => $proxy->_real(), $value));
                 break;
 
             case $value instanceof Proxy:

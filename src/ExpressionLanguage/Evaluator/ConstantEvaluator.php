@@ -12,7 +12,7 @@ final class ConstantEvaluator
     public function __invoke(array $arguments, string $value): mixed
     {
         try {
-            return constant($value);
+            return \constant($value);
         } catch (\Throwable) {
         }
 

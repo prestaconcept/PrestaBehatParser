@@ -16,8 +16,8 @@ final class ScalarAdapter implements AdapterInterface
             'null' === $value => null,
             'true' === $value => true,
             'false' === $value => false,
-            (int) $value == $value => (int) $value,
-            (float) $value == $value => (float) $value,
+            (int)$value == $value => (int)$value,
+            (float)$value == $value => (float)$value,
             default => $value,
         };
     }

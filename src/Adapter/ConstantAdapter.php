@@ -30,8 +30,8 @@ final class ConstantAdapter implements AdapterInterface
             $evaluated = $this->expressionLanguage->evaluate($expression);
 
             // the evaluation did not end up with a transformation
-            preg_match('/constant\([\'"](?<value>[^)]+)[\'"]\)/', $expression, $expressionMatches);
-            if (\is_string($evaluated) && $expressionMatches['value'] === addslashes($evaluated)) {
+            \preg_match('/constant\([\'"](?<value>[^)]+)[\'"]\)/', $expression, $expressionMatches);
+            if (\is_string($evaluated) && $expressionMatches['value'] === \addslashes($evaluated)) {
                 continue;
             }
 
@@ -41,13 +41,13 @@ final class ConstantAdapter implements AdapterInterface
             }
 
             if (!\is_scalar($evaluated) && !$evaluated instanceof \Stringable) {
-                $type = get_debug_type($evaluated);
+                $type = \get_debug_type($evaluated);
 
                 throw new \RuntimeException("The evaluated constant of type \"$type\" could not be cast to string.");
             }
 
             // the expression is included in a larger string
-            $value = str_replace("<$expression>", (string) $evaluated, $value);
+            $value = \str_replace("<$expression>", (string)$evaluated, $value);
         }
 
         return $value;

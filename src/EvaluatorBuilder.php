@@ -36,28 +36,28 @@ final class EvaluatorBuilder
         $this->inflector = InflectorFactory::create()->build();
         $this->registerAdapterFactory(
             ConstantAdapter::class,
-            static fn(ExpressionLanguage $expressionLanguage): AdapterInterface
+            static fn (ExpressionLanguage $expressionLanguage): AdapterInterface
                 => new ConstantAdapter($expressionLanguage),
         );
         $this->registerAdapterFactory(
             DateTimeAdapter::class,
-            static fn(ExpressionLanguage $expressionLanguage): AdapterInterface
+            static fn (ExpressionLanguage $expressionLanguage): AdapterInterface
                 => new DateTimeAdapter($expressionLanguage),
         );
         $this->registerAdapterFactory(
             EnumAdapter::class,
-            static fn(ExpressionLanguage $expressionLanguage): AdapterInterface
+            static fn (ExpressionLanguage $expressionLanguage): AdapterInterface
                 => new EnumAdapter($expressionLanguage),
         );
         $this->registerAdapterFactory(
             FactoryAdapter::class,
-            static fn(ExpressionLanguage $expressionLanguage): AdapterInterface
+            static fn (ExpressionLanguage $expressionLanguage): AdapterInterface
                 => new FactoryAdapter($expressionLanguage),
         );
-        $this->registerAdapterFactory(JsonAdapter::class, static fn(): AdapterInterface => new JsonAdapter());
-        $this->registerAdapterFactory(NthAdapter::class, static fn(): AdapterInterface => new NthAdapter());
-        $this->registerAdapterFactory(ScalarAdapter::class, static fn(): AdapterInterface => new ScalarAdapter());
-        $this->registerAdapterFactory(UnescapeAdapter::class, static fn(): AdapterInterface => new UnescapeAdapter());
+        $this->registerAdapterFactory(JsonAdapter::class, static fn (): AdapterInterface => new JsonAdapter());
+        $this->registerAdapterFactory(NthAdapter::class, static fn (): AdapterInterface => new NthAdapter());
+        $this->registerAdapterFactory(ScalarAdapter::class, static fn (): AdapterInterface => new ScalarAdapter());
+        $this->registerAdapterFactory(UnescapeAdapter::class, static fn (): AdapterInterface => new UnescapeAdapter());
     }
 
     /**
@@ -67,7 +67,7 @@ final class EvaluatorBuilder
      */
     public function registerAdapter(AdapterInterface $adapter): self
     {
-        $this->adapterFactories[$adapter::class] = static fn(): AdapterInterface => $adapter;
+        $this->adapterFactories[$adapter::class] = static fn (): AdapterInterface => $adapter;
 
         return $this;
     }
@@ -122,9 +122,9 @@ final class EvaluatorBuilder
         );
 
         return new Evaluator(
-            array_values(
-                array_map(
-                    static fn(\Closure $factory): AdapterInterface => $factory($expressionLanguage),
+            \array_values(
+                \array_map(
+                    static fn (\Closure $factory): AdapterInterface => $factory($expressionLanguage),
                     $this->adapterFactories,
                 ),
             ),

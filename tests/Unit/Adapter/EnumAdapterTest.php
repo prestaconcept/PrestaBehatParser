@@ -22,7 +22,7 @@ final class EnumAdapterTest extends TestCase
     public function testInvokingTheAdapter(mixed $expected, mixed $value): void
     {
         if ($expected instanceof \Throwable) {
-            $this->expectException(get_class($expected));
+            $this->expectException(\get_class($expected));
 
             if ('' !== $expected->getMessage()) {
                 $this->expectExceptionMessage($expected->getMessage());
@@ -61,27 +61,27 @@ final class EnumAdapterTest extends TestCase
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\FooBarEnum::Foo", "value")>',
         ];
         yield 'a string containing only an int backed enum and requesting it\'s value'
-            . ' should return the enum\'s value' => [
+        . ' should return the enum\'s value' => [
             PriorityEnum::High->value,
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\PriorityEnum::High", "value")>',
         ];
         yield 'a string containing only a string backed enum and requesting it\'s value'
-            . ' should return the enum\'s value' => [
+        . ' should return the enum\'s value' => [
             StatusEnum::Todo->value,
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\StatusEnum::Todo", "value")>',
         ];
         yield 'a string containing only a unit enum and requesting it\'s name'
-            . ' should throw a runtime exception' => [
+        . ' should throw a runtime exception' => [
             new \RuntimeException('You can not get the "name" of a UnitEnum.'),
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\FooBarEnum::Foo", "name")>',
         ];
         yield 'a string containing only an int backed enum and requesting it\'s name'
-            . ' should return the enum\'s name' => [
+        . ' should return the enum\'s name' => [
             PriorityEnum::High->name,
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\PriorityEnum::High", "name")>',
         ];
         yield 'a string containing only a string backed enum and requesting it\'s name'
-            . ' should return the enum\'s name' => [
+        . ' should return the enum\'s name' => [
             StatusEnum::Todo->name,
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\StatusEnum::Todo", "name")>',
         ];
@@ -106,7 +106,7 @@ final class EnumAdapterTest extends TestCase
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\FooBarEnum::Undefined")>',
         ];
         yield 'a string containing only a valid enum but without the enum function'
-            . ' should return the original expression unchanged' => [
+        . ' should return the original expression unchanged' => [
             'Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\FooBarEnum::Foo',
             'Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\FooBarEnum::Foo',
         ];
@@ -116,37 +116,37 @@ final class EnumAdapterTest extends TestCase
                 . ' comes from an enum',
         ];
         yield 'a string containing an int backed enum expression'
-            . ' should return the string after evaluating the enum expression' => [
+        . ' should return the string after evaluating the enum expression' => [
             'the value ' . PriorityEnum::Default->value . ' comes from an enum',
             'the value <enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\PriorityEnum::Default")>'
                 . ' comes from an enum',
         ];
         yield 'a string containing a string backed enum expression'
-            . ' should return the string after evaluating the enum expression' => [
+        . ' should return the string after evaluating the enum expression' => [
             'the value ' . StatusEnum::Doing->value . ' comes from an enum',
             'the value <enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\StatusEnum::Doing")>'
                 . ' comes from an enum',
         ];
         yield 'a string containing a unit enum expression and requesting it\'s value'
-            . ' should throw a runtime exception' => [
+        . ' should throw a runtime exception' => [
             new \RuntimeException('You can not get the "value" of a UnitEnum.'),
             'the value <enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\FooBarEnum::Foo", "value")>'
                 . ' comes from an enum',
         ];
         yield 'a string containing an int backed enum expression and requesting it\'s value'
-            . ' should return the string after evaluating the enum expression' => [
+        . ' should return the string after evaluating the enum expression' => [
             'the value ' . PriorityEnum::Default->value . ' comes from an enum',
             'the value <enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\PriorityEnum::Default", "value")>'
                 . ' comes from an enum',
         ];
         yield 'a string containing a string backed enum expression and requesting it\'s value'
-            . ' should return the string after evaluating the enum expression' => [
+        . ' should return the string after evaluating the enum expression' => [
             'the value ' . StatusEnum::Doing->value . ' comes from an enum',
             'the value <enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\StatusEnum::Doing", "value")>'
                 . ' comes from an enum',
         ];
         yield 'a string containing many enum expressions'
-            . ' should return the string after evaluating the enum expressions' => [
+        . ' should return the string after evaluating the enum expressions' => [
             'the values ' . PriorityEnum::Low->value . ' and ' . StatusEnum::Done->value . ' come from enums',
             'the values <enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\PriorityEnum::Low")>'
                 . ' and <enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\StatusEnum::Done")>'
@@ -154,7 +154,7 @@ final class EnumAdapterTest extends TestCase
         ];
         yield from self::unsupportedValues(['string']);
         yield 'a string containing only a string backed enum and requesting a non existing property'
-            . ' should throw a runtime exception' => [
+        . ' should throw a runtime exception' => [
             new \RuntimeException('You can not get the "invalid" property of an enum.'),
             '<enum("Presta\\\\BehatEvaluator\\\\Tests\\\\Resources\\\\StatusEnum::Todo", "invalid")>',
         ];

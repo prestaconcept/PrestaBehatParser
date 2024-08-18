@@ -52,13 +52,13 @@ final class DateTimeEvaluator
     private function intl(\DateTimeInterface $datetime, array $formats): string
     {
         $date = $formats['date'] ?? 'NONE';
-        $date = constant("\IntlDateFormatter::$date");
+        $date = \constant("\IntlDateFormatter::$date");
         if (!\is_int($date)) {
             throw new \RuntimeException('The intl date format should be a valid \IntlDateFormatter format');
         }
 
         $time = $formats['time'] ?? 'NONE';
-        $time = constant("\IntlDateFormatter::$time");
+        $time = \constant("\IntlDateFormatter::$time");
         if (!\is_int($time)) {
             throw new \RuntimeException('The intl time format should be a valid \IntlDateFormatter format');
         }

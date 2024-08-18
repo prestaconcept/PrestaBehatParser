@@ -22,7 +22,7 @@ final class EvaluatorContext implements Context
     #[Given('the local storage contains:')]
     public function set(TableNode $table): void
     {
-        $this->localStorage = Evaluator::evaluateMany(array_keys($table->getRowsHash()));
+        $this->localStorage = Evaluator::evaluateMany(\array_keys($table->getRowsHash()));
     }
 
     #[When('I format the datetime entries of the local storage with :format')]
@@ -41,7 +41,7 @@ final class EvaluatorContext implements Context
     public function assertLocalStorageContains(TableNode $table): void
     {
         TestCase::assertSame(
-            Evaluator::evaluateMany(array_keys($table->getRowsHash())),
+            Evaluator::evaluateMany(\array_keys($table->getRowsHash())),
             $this->localStorage,
         );
     }

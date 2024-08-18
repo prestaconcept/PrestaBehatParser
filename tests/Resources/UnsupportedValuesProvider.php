@@ -45,7 +45,7 @@ trait UnsupportedValuesProvider
     {
         $debugType = match (true) {
             \is_object($value) => 'object',
-            default => get_debug_type($value),
+            default => \get_debug_type($value),
         };
 
         $prefix = match ($debugType) {
@@ -59,6 +59,6 @@ trait UnsupportedValuesProvider
             default => '',
         };
 
-        return trim("$prefix $debugType $suffix") . ' should return the original value unchanged';
+        return \trim("$prefix $debugType $suffix") . ' should return the original value unchanged';
     }
 }
